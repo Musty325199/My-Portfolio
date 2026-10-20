@@ -5,8 +5,6 @@
 
 // CLEARLY MARKED TODOS AS REQUESTED BY THE SPEC
 export const TODO_LINKS = {
-  // TODO: Add your LinkedIn profile URL here
-  LINKEDIN_URL: "[TODO: Add your LinkedIn profile URL]",
   // TODO: Add Hostvale live URL here once public; currently in development
   HOSTVALE_URL: "[TODO: Add Hostvale live URL once public]",
   // TODO: Confirm StockFlow exact production stack with owner
@@ -82,7 +80,7 @@ export const PORTFOLIO_CONTENT = {
     github: "https://github.com/Musty325199",
     email: "mustyflowcrm@gmail.com",
     whatsapp: "https://wa.me/2349065323916",
-    linkedin: TODO_LINKS.LINKEDIN_URL,
+    linkedin: "https://www.linkedin.com/in/mustapha-lawal-74b62523b",
   },
 
   navigation: [

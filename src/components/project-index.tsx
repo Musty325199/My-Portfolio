@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "motion/react";
 import { PORTFOLIO_CONTENT, Project } from "@/data/content";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
@@ -88,7 +89,7 @@ export function ProjectIndex() {
       <div className="divide-y divide-white/[0.12]" onMouseMove={handleMouseMove}>
         {PORTFOLIO_CONTENT.projects.map((project) => {
           const isExpanded = expandedMobileId === project.id;
-          const hrefTarget = project.isFlagship ? "#tessel" : project.liveUrl || "#";
+          const projectUrl = `/work/${project.id}`;
 
           return (
             <div
@@ -104,8 +105,8 @@ export function ProjectIndex() {
                   <span className="font-mono text-sm sm:text-base text-[#6B665C] group-hover:text-[#FF6A2B] transition-colors">
                     {project.number}
                   </span>
-                  <a
-                    href={hrefTarget}
+                  <Link
+                    href={projectUrl}
                     className="group-hover:translate-x-3 transition-transform duration-200 inline-flex items-baseline gap-3"
                   >
                     <h3 className="font-serif text-3xl sm:text-5xl md:text-6xl text-[#F2EEE6] group-hover:text-[#FF6A2B] transition-colors">
@@ -116,7 +117,7 @@ export function ProjectIndex() {
                         Flagship
                       </span>
                     )}
-                  </a>
+                  </Link>
                 </div>
 
                 {/* Right / Center on desktop: Summary & Stack */}
@@ -142,13 +143,13 @@ export function ProjectIndex() {
 
                 {/* Action CTA */}
                 <div className="flex items-center justify-between lg:justify-end gap-4 pt-2 lg:pt-0">
-                  <a
-                    href={hrefTarget}
+                  <Link
+                    href={projectUrl}
                     className="font-mono text-xs uppercase tracking-wider text-[#F2EEE6] hover:text-[#FF6A2B] flex items-center gap-1 group-hover:underline"
                   >
-                    <span>{project.isFlagship ? "Read Case Study" : "View Project"}</span>
+                    <span>View Case Study</span>
                     <ArrowUpRight className="w-4 h-4 text-[#FF6A2B]" />
-                  </a>
+                  </Link>
 
                   {/* Mobile expansion toggle button */}
                   <button
@@ -201,27 +202,23 @@ export function ProjectIndex() {
                       </div>
 
                       <div className="pt-2 flex flex-wrap gap-3">
-                        {project.isFlagship ? (
-                          <a
-                            href="#tessel"
-                            className="px-4 py-2 bg-[#F2EEE6] text-[#0E0D0B] font-mono text-xs font-semibold uppercase tracking-wider rounded-sm flex items-center gap-1.5"
-                          >
-                            Explore Flagship Case Study
-                          </a>
-                        ) : project.liveUrl && project.liveUrl.startsWith("http") ? (
+                        <Link
+                          href={`/work/${project.id}`}
+                          className="px-4 py-2 bg-[#F2EEE6] text-[#0E0D0B] hover:bg-[#FF6A2B] font-mono text-xs font-semibold uppercase tracking-wider rounded-sm flex items-center gap-1.5 transition-colors"
+                        >
+                          <span>Read Full Case Study</span>
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </Link>
+                        {project.liveUrl && project.liveUrl.startsWith("http") && (
                           <a
                             href={project.liveUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="px-4 py-2 bg-[#F2EEE6] text-[#0E0D0B] font-mono text-xs font-semibold uppercase tracking-wider rounded-sm flex items-center gap-1.5"
+                            className="px-4 py-2 border border-white/20 text-[#F2EEE6] hover:text-[#FF6A2B] font-mono text-xs uppercase tracking-wider rounded-sm flex items-center gap-1.5"
                           >
-                            Visit Live Site
+                            <span>Live Site</span>
                             <ArrowUpRight className="w-3.5 h-3.5" />
                           </a>
-                        ) : (
-                          <span className="px-3 py-1.5 border border-white/20 text-[#A39E92] font-mono text-xs uppercase rounded-sm">
-                            Status: In Development
-                          </span>
                         )}
                       </div>
                     </div>

@@ -53,49 +53,34 @@ export function Hero() {
           </motion.span>
         </div>
 
-        {/* Display Name */}
-        <div className="overflow-hidden">
-          <motion.h1
-            initial={{ y: "100%", opacity: 0 }}
-            animate={{ y: "0%", opacity: 1 }}
-            transition={{ duration: 0.75, delay: 0.08, ease: MOTION.easings.entranceBezier }}
-            className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight text-[#F2EEE6] leading-[0.92] select-none"
-          >
-            Mustapha Lawal
-          </motion.h1>
+        {/* Display Name & Role */}
+        <div className="space-y-3">
+          <div className="overflow-hidden">
+            <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight text-[#F2EEE6] leading-[0.92] select-none">
+              Mustapha Lawal
+            </h1>
+          </div>
+          <p className="font-mono text-sm sm:text-base text-[#FF6A2B] uppercase tracking-wider font-medium">
+            Full-stack developer in Lagos, Nigeria
+          </p>
         </div>
 
         {/* Hairline Divider */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: MOTION.easings.entranceBezier }}
-          className="h-[1px] bg-white/[0.12] origin-left my-6 sm:my-8"
-        />
+        <div className="h-[1px] bg-white/[0.12] origin-left my-6 sm:my-8" />
 
         {/* Positioning Statement & Subline */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: MOTION.durations.med, delay: 0.3, ease: MOTION.easings.entranceBezier }}
-            className="md:col-span-8"
-          >
+          <div className="md:col-span-8">
             <p className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#F2EEE6] leading-snug">
               &ldquo;{PORTFOLIO_CONTENT.identity.positioning}&rdquo;
             </p>
             <p className="mt-4 font-sans text-base sm:text-lg text-[#A39E92] leading-relaxed max-w-2xl">
               {PORTFOLIO_CONTENT.identity.subline}
             </p>
-          </motion.div>
+          </div>
 
           {/* Quick Stats Column */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: MOTION.durations.med, delay: 0.4, ease: MOTION.easings.entranceBezier }}
-            className="md:col-span-4 flex flex-col gap-3 font-mono text-xs text-[#A39E92] md:border-l md:border-white/[0.08] md:pl-6"
-          >
+          <div className="md:col-span-4 flex flex-col gap-3 font-mono text-xs text-[#A39E92] md:border-l md:border-white/[0.08] md:pl-6">
             <div>
               <span className="text-[#6B665C]">Core Focus /</span>
               <p className="text-[#F2EEE6] mt-0.5">Real-time collaboration & CRDTs</p>
@@ -108,7 +93,7 @@ export function Hero() {
               <span className="text-[#6B665C]">Delivery /</span>
               <p className="text-[#F2EEE6] mt-0.5">Edge-first architectures ($0 overhead)</p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 

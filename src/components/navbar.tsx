@@ -239,7 +239,7 @@ export function Navbar() {
                 <span>Open to work · Lagos, WAT {lagosTime}</span>
               </div>
 
-              <div className="flex items-center gap-4 text-[#F2EEE6]">
+              <div className="flex flex-wrap items-center gap-4 text-[#F2EEE6]">
                 <a
                   href={`mailto:${PORTFOLIO_CONTENT.links.email}`}
                   className="hover:text-[#FF6A2B] py-1 transition-colors"
@@ -254,6 +254,15 @@ export function Navbar() {
                   className="hover:text-[#FF6A2B] py-1 transition-colors"
                 >
                   WhatsApp
+                </a>
+                <span className="text-[#6B665C]">·</span>
+                <a
+                  href={PORTFOLIO_CONTENT.links.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#FF6A2B] py-1 transition-colors"
+                >
+                  LinkedIn
                 </a>
                 <span className="text-[#6B665C]">·</span>
                 <a

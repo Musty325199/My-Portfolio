@@ -23,17 +23,25 @@ A high-performance, editorial dark developer portfolio engineered with an "engin
    - 3 durations (180ms, 420ms, 900ms), 2 easings (`power3.out`, `expo.inOut`), 60ms stagger.
    - Respects `prefers-reduced-motion` and testable via `?reduce=1` URL query parameter.
    - Lenis smooth scroll synchronized directly to GSAP's Ticker.
-4. **Tessel Centerpiece Case Study:**
+4. **Complete SEO Suite:**
+   - Single semantic H1: "Mustapha Lawal" with role in the same hero block.
+   - Dynamic 1200x630 Open Graph card via `next/og` (`/opengraph-image`).
+   - Per-project dedicated URLs (`/work/tessel`, `/work/stockflow`, `/work/nook`, `/work/hostvale`) with individual metadata and dynamic OG images.
+   - Consolidated JSON-LD structured data (`Person`, `WebSite`, `ProfilePage`, `SoftwareApplication`).
+   - Automatically generated `/sitemap.xml` and `/robots.txt` (disallowing `/api/*`).
+   - Web App Manifest (`/manifest.webmanifest`) and `apple-touch-icon.png`.
+5. **Tessel Centerpiece Case Study:**
    - Sticky pinned desktop chapter presentation with mobile-safe fallback via `matchMedia`.
    - SVG Architecture diagram with animated packet dots and line-drawing on scroll.
    - Optimised video conversion: `demo.gif` converted to WebM (134 KB) and MP4 (300 KB) with lazy-loading and poster fallback.
-5. **Free AI Assistant ("Ask Musty's portfolio"):**
+6. **Free AI Assistant ("Ask Musty's portfolio"):**
    - Free Google Gemini REST integration with model fallback (`gemini-2.0-flash-lite` → `gemini-2.0-flash`).
    - Strict grounding: only answers from `src/data/content.ts` (under 80 words, no hallucinations, refuses prompt extraction).
    - Rate limiting: 8 requests / 10 minutes per IP with input sanitization.
    - Offline-capable: 5 precomputed suggestion chips operate with zero API calls.
-6. **$0 Infrastructure:**
+7. **$0 Infrastructure & Security:**
    - 100% static-prerendered pages with dynamic API routes.
+   - HTTP Security headers (`Strict-Transport-Security`, `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`).
    - Resend contact route with honeypot bot defense and graceful `mailto:` fallback.
 
 ---
@@ -54,8 +62,9 @@ Copy `.env.example` to `.env.local`:
 ```bash
 cp .env.example .env.local
 ```
-Add your free Google Gemini API key if you want live dynamic responses (the 5 suggested question chips work out of the box even without an API key):
+Configure your environment keys:
 ```env
+NEXT_PUBLIC_SITE_URL=https://musty-portfolio.vercel.app
 GEMINI_API_KEY=your_gemini_api_key_here
 RESEND_API_KEY=your_resend_api_key_here
 ```
@@ -87,9 +96,8 @@ This portfolio is tailored specifically for Vercel's free tier with zero recurri
 ### Option A: Deploy via GitHub (Recommended)
 1. Push this repository to your GitHub account:
    ```bash
-   git init
    git add .
-   git commit -m "feat: initial commit of developer portfolio"
+   git commit -m "feat: complete developer portfolio with full SEO"
    git remote add origin https://github.com/Musty325199/portfolio.git
    git branch -M main
    git push -u origin main
@@ -97,24 +105,78 @@ This portfolio is tailored specifically for Vercel's free tier with zero recurri
 2. Go to [vercel.com](https://vercel.com) and log in with GitHub.
 3. Click **Add New...** > **Project** and select your repository.
 4. In the **Environment Variables** section, add:
-   - `GEMINI_API_KEY` (Get one free at [aistudio.google.com](https://aistudio.google.com/app/apikey))
-   - `RESEND_API_KEY` (Optional, from [resend.com](https://resend.com); if omitted, contact form gracefully opens `mailto:`)
+   - `NEXT_PUBLIC_SITE_URL`: `https://musty-portfolio.vercel.app` (or your custom domain)
+   - `GEMINI_API_KEY`: *(Free)* Get one from [aistudio.google.com](https://aistudio.google.com/app/apikey)
+   - `RESEND_API_KEY`: *(Optional)* From [resend.com](https://resend.com)
 5. Click **Deploy**. Vercel will build the static pages and deploy edge route handlers in under 60 seconds.
-
-### Option B: Deploy via Vercel CLI
-```bash
-npx vercel
-```
-Follow the interactive CLI prompts and select default settings.
 
 ---
 
-## Checklist of TODOs
+## Google Setup (Post-Deployment Steps)
 
-All content, links, and project data are centralized in [src/data/content.ts](file:///c:/Projects/My_Portfolio/src/data/content.ts).
+Follow these exact steps immediately after deploying your site to Vercel:
 
-### 1. URLs & Socials
-- [ ] **LinkedIn URL:** Open [src/data/content.ts](file:///c:/Projects/My_Portfolio/src/data/content.ts) and update `TODO_LINKS.LINKEDIN_URL` with your real profile link.
+### 1. Verify Site Ownership in Google Search Console
+1. Navigate to [Google Search Console](https://search.google.com/search-console).
+2. Choose **URL prefix** and enter your live URL:
+   ```
+   https://musty-portfolio.vercel.app
+   ```
+3. Choose the **HTML tag** verification method. Copy the verification meta tag value.
+4. Add the verification code to `src/app/layout.tsx` under `metadata.verification.google` or deploy via DNS if using a custom domain.
+
+### 2. Submit Your XML Sitemap
+1. In Google Search Console, go to **Index** > **Sitemaps** on the left sidebar.
+2. Enter the sitemap path:
+   ```
+   sitemap.xml
+   ```
+   Full URL: `https://musty-portfolio.vercel.app/sitemap.xml`
+3. Click **Submit**. Google will read the home page and all project URLs:
+   - `https://musty-portfolio.vercel.app/`
+   - `https://musty-portfolio.vercel.app/work/tessel`
+   - `https://musty-portfolio.vercel.app/work/stockflow`
+   - `https://musty-portfolio.vercel.app/work/nook`
+   - `https://musty-portfolio.vercel.app/work/hostvale`
+
+### 3. Verify Robots.txt
+Open `https://musty-portfolio.vercel.app/robots.txt` in your browser. Verify it displays:
+```txt
+User-Agent: *
+Allow: /
+Disallow: /api/*
+
+Sitemap: https://musty-portfolio.vercel.app/sitemap.xml
+```
+
+### 4. Test Rich Results (Structured Data Validation)
+1. Open the [Google Rich Results Test](https://search.google.com/test/rich-results).
+2. Enter `https://musty-portfolio.vercel.app`.
+3. Confirm that the following schemas are recognized without errors:
+   - **Person** (`Mustapha Lawal`)
+   - **ProfilePage**
+   - **WebSite**
+   - **SoftwareApplication** (`Tessel`, `StockFlow`, `NOOK`, `Hostvale`)
+
+### 5. Request Immediate Indexing
+1. In the top URL Inspection bar in Search Console, paste:
+   ```
+   https://musty-portfolio.vercel.app
+   ```
+2. Click **Test Live URL**, then click **Request Indexing**.
+3. Repeat for your flagship case study:
+   ```
+   https://musty-portfolio.vercel.app/work/tessel
+   ```
+
+---
+
+## Checklist of Remaining TODOs
+
+All content and links are centralized in [src/data/content.ts](file:///c:/Projects/My_Portfolio/src/data/content.ts).
+
+### 1. Links & Project Status
+- [x] **LinkedIn Profile:** Configured to `https://www.linkedin.com/in/mustapha-lawal-74b62523b`.
 - [ ] **Hostvale Live URL:** When Hostvale goes live, update `TODO_LINKS.HOSTVALE_URL` in [src/data/content.ts](file:///c:/Projects/My_Portfolio/src/data/content.ts).
 - [ ] **StockFlow Production Stack:** Confirm full tech stack with owner and update the tags in [src/data/content.ts](file:///c:/Projects/My_Portfolio/src/data/content.ts).
 
@@ -131,7 +193,3 @@ All images below currently have clean 16:10 dark blueprint placeholder files in 
 - [ ] **Hostvale:**
   - `public/assets/hostvale/screen-1.jpg` — Operations portal: caution fee logs, guest identity validation, and check-in rosters.
   - `public/assets/hostvale/screen-2.jpg` — Host mini-website storefront: direct booking portal and apartment photo gallery.
-
-### 3. API Keys
-- [ ] **Google Gemini API Key:** Set `GEMINI_API_KEY` in Vercel Project Settings > Environment Variables for the free AI assistant.
-- [ ] **Resend API Key (Optional):** Set `RESEND_API_KEY` in Vercel if you want direct email delivery from the contact form.

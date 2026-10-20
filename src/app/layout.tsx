@@ -29,9 +29,15 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://musty-portfolio.vercel.app";
+const metaTitle = "Mustapha Lawal | Full-Stack Developer (MERN) in Lagos, Nigeria";
+const metaDescription =
+  "Mustapha Lawal is a full-stack developer (MERN & Next.js) in Lagos building real-time apps. Creator of Tessel whiteboard, StockFlow, NOOK, and Hostvale.";
+
 export const metadata: Metadata = {
-  title: `${PORTFOLIO_CONTENT.identity.fullName} (${PORTFOLIO_CONTENT.identity.shortName}) — Full-Stack Developer`,
-  description: `${PORTFOLIO_CONTENT.identity.positioning} ${PORTFOLIO_CONTENT.identity.subline}`,
+  metadataBase: new URL(siteUrl),
+  title: metaTitle,
+  description: metaDescription,
   keywords: [
     "Mustapha Lawal",
     "Musty",
@@ -39,37 +45,48 @@ export const metadata: Metadata = {
     "MERN Stack",
     "Next.js",
     "Lagos Nigeria Developer",
+    "Real-time apps",
     "Yjs CRDT",
-    "Real-time Collaboration",
+    "Tessel",
+    "StockFlow",
+    "NOOK",
+    "Hostvale",
     "TypeScript",
+    "MongoDB",
+    "PostgreSQL",
   ],
-  authors: [{ name: PORTFOLIO_CONTENT.identity.fullName }],
+  authors: [{ name: PORTFOLIO_CONTENT.identity.fullName, url: siteUrl }],
   creator: PORTFOLIO_CONTENT.identity.fullName,
-  metadataBase: new URL("https://musty-portfolio.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: "https://musty-portfolio.vercel.app",
-    title: `${PORTFOLIO_CONTENT.identity.fullName} — ${PORTFOLIO_CONTENT.identity.positioning}`,
-    description: PORTFOLIO_CONTENT.identity.subline,
-    siteName: `${PORTFOLIO_CONTENT.identity.fullName} Portfolio`,
-    images: [
-      {
-        url: "/assets/tessel/landing.jpg",
-        width: 1200,
-        height: 630,
-        alt: `${PORTFOLIO_CONTENT.identity.fullName} Portfolio`,
-      },
-    ],
+    locale: "en_NG",
+    url: siteUrl,
+    title: metaTitle,
+    description: metaDescription,
+    siteName: "Mustapha Lawal Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${PORTFOLIO_CONTENT.identity.fullName} — Full-Stack Developer`,
-    description: PORTFOLIO_CONTENT.identity.positioning,
-    images: ["/assets/tessel/landing.jpg"],
+    title: metaTitle,
+    description: metaDescription,
   },
   icons: {
     icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
 };
 
@@ -78,11 +95,81 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Comprehensive Structured Data (JSON-LD)
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": `${siteUrl}/#person`,
+        name: "Mustapha Lawal",
+        alternateName: "Musty",
+        jobTitle: "Full-Stack Developer",
+        url: siteUrl,
+        email: "mustyflowcrm@gmail.com",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Lagos",
+          addressCountry: "NG",
+        },
+        knowsAbout: [
+          "MERN",
+          "React",
+          "Node.js",
+          "TypeScript",
+          "Next.js",
+          "MongoDB",
+          "PostgreSQL",
+          "WebSockets",
+          "Yjs",
+        ],
+        sameAs: [
+          "https://github.com/Musty325199",
+          "https://www.linkedin.com/in/mustapha-lawal-74b62523b",
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        url: siteUrl,
+        name: "Mustapha Lawal | Full-Stack Developer",
+        description: metaDescription,
+        publisher: { "@id": `${siteUrl}/#person` },
+        inLanguage: "en-NG",
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": `${siteUrl}/#profilepage`,
+        url: siteUrl,
+        name: metaTitle,
+        isPartOf: { "@id": `${siteUrl}/#website` },
+        about: { "@id": `${siteUrl}/#person` },
+        mainEntity: { "@id": `${siteUrl}/#person` },
+      },
+      ...PORTFOLIO_CONTENT.projects.map((project) => ({
+        "@type": "SoftwareApplication",
+        name: project.title,
+        headline: project.tagline,
+        description: project.oneLiner,
+        applicationCategory: project.category,
+        operatingSystem: "Web, iOS, Android",
+        url: `${siteUrl}/work/${project.id}`,
+        author: { "@id": `${siteUrl}/#person` },
+      })),
+    ],
+  };
+
   return (
     <html
       lang="en"
       className={`${newsreader.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
       <body className="bg-[#0E0D0B] text-[#F2EEE6] selection:bg-[#FF6A2B] selection:text-[#0E0D0B]">
         <div className="grain-overlay" aria-hidden="true" />
         {children}
