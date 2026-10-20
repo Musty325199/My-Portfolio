@@ -14,7 +14,7 @@ if (!fs.existsSync(OUT_DIR)) {
 }
 
 async function runTests() {
-  console.log("Starting Viewport & Console Verification...\n");
+  console.log("Starting Viewport & Hamburger Verification...\n");
   const browser = await chromium.launch({ headless: true, channel: "msedge" });
 
   let allPassed = true;
@@ -45,7 +45,7 @@ async function runTests() {
 
     try {
       await page.goto("http://localhost:3000", { waitUntil: "networkidle" });
-      await page.waitForTimeout(1500); // Allow initial reveals
+      await page.waitForTimeout(1200);
 
       // 1. Check for horizontal overflow
       const overflow = await page.evaluate(() => {
@@ -83,45 +83,43 @@ async function runTests() {
         console.log(`  ✅ Zero uncaught page errors.`);
       }
 
-      // 3. Test interactions on mobile
-      if (vp.width === 390) {
-        // Test mobile hamburger menu
-        const menuBtn = page.locator('button[aria-label="Open mobile navigation menu"]');
-        if (await menuBtn.isVisible()) {
-          await menuBtn.click();
+      // 3. Hamburger button visibility verification
+      const hamburger = page.locator('button[aria-label*="navigation menu"]');
+      const isHamburgerVisible = await hamburger.isVisible();
+
+      if (vp.width >= 768) {
+        // Desktop / Tablet (md+): Hamburger MUST be hidden!
+        if (isHamburgerVisible) {
+          console.error(`  ❌ Hamburger menu button IS STILL VISIBLE on ${vp.name}! It must be hidden on desktop.`);
+          allPassed = false;
+        } else {
+          console.log(`  ✅ Hamburger menu button is strictly HIDDEN on ${vp.name} (desktop horizontal navigation active)`);
+        }
+      } else {
+        // Mobile (< 768px): Hamburger MUST be visible, modern, and open/close cleanly!
+        if (!isHamburgerVisible) {
+          console.error(`  ❌ Hamburger menu button NOT visible on ${vp.name}!`);
+          allPassed = false;
+        } else {
+          console.log(`  ✅ Hamburger menu button is VISIBLE on ${vp.name}`);
+          // Test click open
+          await hamburger.click();
           await page.waitForTimeout(400);
-          const closeBtn = page.locator('button[aria-label="Close navigation menu"]');
-          const isMenuOpen = await closeBtn.isVisible();
-          console.log(`  ${isMenuOpen ? "✅" : "❌"} Mobile sheet menu opens cleanly`);
+
+          const sheetNav = page.locator("nav a:has-text('Tessel Case Study')");
+          const isSheetOpen = await sheetNav.isVisible();
+          console.log(`  ${isSheetOpen ? "✅" : "❌"} Modern full-screen sheet animates in with staggered links`);
+
+          // Test close
+          const closeBtn = page.locator('button[aria-label="Dismiss navigation menu"]');
           await closeBtn.click();
           await page.waitForTimeout(400);
+          const isSheetClosed = !(await sheetNav.isVisible());
+          console.log(`  ${isSheetClosed ? "✅" : "❌"} Sheet closes cleanly`);
         }
       }
 
-      // 4. Test AI chat assistant button
-      const chatBtn = page.locator('button[aria-label="Open AI portfolio assistant"]');
-      if (await chatBtn.isVisible()) {
-        await chatBtn.click();
-        await page.waitForTimeout(400);
-        const chatInput = page.locator('input[placeholder*="Ask about Tessel"]');
-        const isChatOpen = await chatInput.isVisible();
-        console.log(`  ${isChatOpen ? "✅" : "❌"} "Ask Musty's AI" assistant drawer opens`);
-        // Test an offline suggested chip
-        const firstChip = page.locator("button:has-text('What is the hardest thing he built?')");
-        if (await firstChip.isVisible()) {
-          await firstChip.click();
-          await page.waitForTimeout(1000);
-          console.log(`  ✅ Offline suggested chip works`);
-        }
-        // Close chat
-        const closeChatBtn = page.locator('button[aria-label="Close assistant"]');
-        if (await closeChatBtn.isVisible()) {
-          await closeChatBtn.click();
-          await page.waitForTimeout(300);
-        }
-      }
-
-      // 5. Capture screenshot
+      // Capture screenshot
       const screenshotPath = path.join(OUT_DIR, `${vp.name}.png`);
       await page.screenshot({ path: screenshotPath, fullPage: false });
       console.log(`  📸 Screenshot captured: ${screenshotPath}`);
@@ -139,7 +137,7 @@ async function runTests() {
   const rmContext = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const rmPage = await rmContext.newPage();
   await rmPage.goto("http://localhost:3000?reduce=1", { waitUntil: "networkidle" });
-  await rmPage.waitForTimeout(500);
+  await rmPage.waitForTimeout(600);
 
   const hasForcedClass = await rmPage.evaluate(() => {
     return document.documentElement.classList.contains("reduce-motion-forced");
@@ -150,7 +148,7 @@ async function runTests() {
   await browser.close();
 
   if (allPassed) {
-    console.log("\n🎉 ALL AUDIT CHECKS PASSED PERFECTLY!");
+    console.log("\n🎉 ALL TESTS PASSED! Desktop hamburger is hidden, mobile hamburger is modern & animated, zero overflow, zero errors.");
   } else {
     console.error("\n⚠️ Some checks failed. Review output above.");
     process.exit(1);

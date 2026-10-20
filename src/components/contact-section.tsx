@@ -90,11 +90,11 @@ export function ContactSection() {
 
       {/* Giant Rolling-text Email Link & Copy Button */}
       <div className="mb-16 pb-12 border-b border-white/[0.08]">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div className="overflow-x-auto py-2">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 min-w-0">
+          <div className="min-w-0 max-w-full overflow-hidden py-2">
             <a
               href={`mailto:${email}`}
-              className="group font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-[#F2EEE6] hover:text-[#FF6A2B] transition-colors tracking-tight block whitespace-nowrap"
+              className="group font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-[#F2EEE6] hover:text-[#FF6A2B] transition-colors tracking-tight block truncate sm:whitespace-nowrap"
             >
               <span className="inline-block transition-transform duration-300 group-hover:-translate-y-1">
                 {email}

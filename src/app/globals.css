@@ -97,13 +97,10 @@ body {
   background: #FF6A2B;
 }
 
-/* Tap targets minimum 44px */
-button, a {
-  min-height: 44px;
-  min-width: 44px;
-  display: inline-flex;
-  align-items: center;
-  touch-action: manipulation;
+@layer base {
+  button, a {
+    touch-action: manipulation;
+  }
 }
 
 /* Custom marquee animation */
