@@ -142,7 +142,7 @@ export function SecondaryProjects() {
 
             {/* Screenshots slot */}
             <div className="lg:col-span-7 space-y-4">
-              <BrowserFrame url="stockflowhq.com">
+              <BrowserFrame url={stockflow.liveUrl ? stockflow.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "") : ""}>
                 <ImageReveal className="relative w-full aspect-[16/10] overflow-hidden">
                   <Image
                     src="/assets/stockflow/screen-1.jpg"
@@ -259,7 +259,7 @@ export function SecondaryProjects() {
 
             {/* Screenshots slot */}
             <div className="lg:col-span-7 space-y-4">
-              <BrowserFrame url="nook-lagos.vercel.app">
+              <BrowserFrame url={nook.liveUrl ? nook.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "") : ""}>
                 <ImageReveal className="relative w-full aspect-[16/10] overflow-hidden">
                   <Image
                     src="/assets/nook/screen-1.jpg"
@@ -305,15 +305,17 @@ export function SecondaryProjects() {
               </p>
             </div>
 
-            <a
-              href="https://hostvale.app/ops"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-mono text-xs text-[#FF6A2B] hover:text-[#FF854A] border border-[#FF6A2B]/30 hover:border-[#FF6A2B] px-3.5 py-1.5 rounded-xs transition-colors"
-            >
-              <span>hostvale.app/ops</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </a>
+            {hostvale.liveUrl && (
+              <a
+                href={hostvale.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2.5 bg-[#F2EEE6] hover:bg-[#FF6A2B] text-[#0E0D0B] font-mono text-xs font-semibold uppercase tracking-wider rounded-sm transition-colors flex items-center gap-2"
+              >
+                <span>Visit Hostvale</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            )}
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-8">
@@ -362,7 +364,7 @@ export function SecondaryProjects() {
 
             {/* Screenshots slot */}
             <div className="lg:col-span-7 space-y-4">
-              <BrowserFrame url="hostvale.app/ops">
+              <BrowserFrame url={hostvale.liveUrl ? hostvale.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "") : ""}>
                 <ImageReveal className="relative w-full aspect-[16/10] overflow-hidden">
                   <Image
                     src="/assets/hostvale/screen-1.jpg"

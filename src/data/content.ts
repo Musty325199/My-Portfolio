@@ -3,6 +3,20 @@
  * Adheres strictly to the portfolio brief. No invented metrics, clients, or testimonials.
  */
 
+// SOURCE OF TRUTH (exact URLs) - Single location for all outbound and project URLs
+export const SOURCE_OF_TRUTH_URLS = {
+  portfolio: "https://musty-dev.vercel.app",
+  tesselDemo: "https://musty325199.github.io/tessel/",
+  tesselCode: "https://github.com/Musty325199/tessel",
+  stockflow: "https://stockflowhq.com",
+  nook: "https://nook-lagos.vercel.app",
+  hostvale: "https://hostvalehq.github.io/",
+  github: "https://github.com/Musty325199",
+  linkedin: "https://www.linkedin.com/in/mustapha-lawal-74b62523b",
+  email: "mustyflowcrm@gmail.com",
+  whatsapp: "https://wa.me/2349065323916",
+} as const;
+
 // CLEARLY MARKED TODOS AS REQUESTED BY THE SPEC
 export const TODO_LINKS = {
   // TODO: Confirm StockFlow exact production stack with owner
@@ -75,10 +89,11 @@ export const PORTFOLIO_CONTENT = {
   },
 
   links: {
-    github: "https://github.com/Musty325199",
-    email: "mustyflowcrm@gmail.com",
-    whatsapp: "https://wa.me/2349065323916",
-    linkedin: "https://www.linkedin.com/in/mustapha-lawal-74b62523b",
+    portfolio: SOURCE_OF_TRUTH_URLS.portfolio,
+    github: SOURCE_OF_TRUTH_URLS.github,
+    email: SOURCE_OF_TRUTH_URLS.email,
+    whatsapp: SOURCE_OF_TRUTH_URLS.whatsapp,
+    linkedin: SOURCE_OF_TRUTH_URLS.linkedin,
   },
 
   navigation: [
@@ -114,8 +129,8 @@ export const PORTFOLIO_CONTENT = {
         "Playwright",
         "GitHub Actions",
       ],
-      liveUrl: "https://musty325199.github.io/tessel/",
-      githubUrl: "https://github.com/Musty325199/tessel",
+      liveUrl: SOURCE_OF_TRUTH_URLS.tesselDemo,
+      githubUrl: SOURCE_OF_TRUTH_URLS.tesselCode,
       status: "Live",
       isFlagship: true,
       previewImage: "/assets/tessel/dashboard-dark.jpg",
@@ -258,7 +273,7 @@ export const PORTFOLIO_CONTENT = {
         "TypeScript",
         "Tailwind CSS",
       ],
-      liveUrl: "https://stockflowhq.com",
+      liveUrl: SOURCE_OF_TRUTH_URLS.stockflow,
       status: "Live",
       isFlagship: false,
       previewImage: "/assets/stockflow/screen-1.jpg",
@@ -298,7 +313,7 @@ export const PORTFOLIO_CONTENT = {
         "Resend",
         "Tailwind CSS",
       ],
-      liveUrl: "https://nook-lagos.vercel.app",
+      liveUrl: SOURCE_OF_TRUTH_URLS.nook,
       status: "Live",
       isFlagship: false,
       previewImage: "/assets/nook/screen-1.jpg",
@@ -331,7 +346,7 @@ export const PORTFOLIO_CONTENT = {
         "PostgreSQL",
         "Tailwind CSS",
       ],
-      liveUrl: "https://hostvale.app/ops",
+      liveUrl: SOURCE_OF_TRUTH_URLS.hostvale,
       status: "Live",
       isFlagship: false,
       previewImage: "/assets/hostvale/screen-1.jpg",

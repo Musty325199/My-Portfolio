@@ -119,7 +119,7 @@ export function TesselCaseStudy() {
 
       {/* Hero Showcase Media: landing.jpg */}
       <div className="mb-20">
-        <BrowserFrame url="musty325199.github.io/tessel/">
+        <BrowserFrame url={tesselProject.liveUrl ? tesselProject.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "") : ""}>
           <div className="relative w-full aspect-[16/10] overflow-hidden">
             <Image
               src="/assets/tessel/landing.jpg"
@@ -255,7 +255,7 @@ export function TesselCaseStudy() {
             </div>
           </div>
           <div className="lg:col-span-7">
-            <BrowserFrame url="musty325199.github.io/tessel/live">
+            <BrowserFrame url={tesselProject.liveUrl ? tesselProject.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "") : ""}>
               <div className="relative w-full aspect-[16/10] overflow-hidden">
                 <Image
                   src="/assets/tessel/board.jpg"

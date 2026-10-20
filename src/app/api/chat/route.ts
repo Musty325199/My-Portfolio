@@ -144,7 +144,7 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // Check pre-written suggestions first for zero-latency / offline answers
+    // Check pre-written suggestions first for instant / offline answers
     const exactSuggestion = PORTFOLIO_CONTENT.aiAssistant.suggestedQuestions.find(
       (q) =>
         q.question.toLowerCase() === sanitized.toLowerCase() ||

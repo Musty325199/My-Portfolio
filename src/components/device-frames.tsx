@@ -9,7 +9,7 @@ interface BrowserFrameProps {
   className?: string;
 }
 
-export function BrowserFrame({ children, url = "tessel.app/board/live", className = "" }: BrowserFrameProps) {
+export function BrowserFrame({ children, url = "", className = "" }: BrowserFrameProps) {
   return (
     <div
       className={`rounded-lg border border-white/[0.14] bg-[#141311] overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.65)] ${className}`}

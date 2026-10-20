@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { PORTFOLIO_CONTENT } from "@/data/content";
 
 export const runtime = "edge";
 export const alt = "Mustapha Lawal — Full-Stack Developer (MERN) in Lagos, Nigeria";
@@ -143,7 +144,7 @@ export default async function Image() {
             <span>04 / HOSTVALE</span>
           </div>
           <div style={{ color: "#F2EEE6" }}>
-            mustyflowcrm@gmail.com
+            {PORTFOLIO_CONTENT.links.email}
           </div>
         </div>
       </div>

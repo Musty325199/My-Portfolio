@@ -110,7 +110,7 @@ export default function RootLayout({
         alternateName: "Musty",
         jobTitle: "Full-Stack Developer",
         url: siteUrl,
-        email: "mustyflowcrm@gmail.com",
+        email: PORTFOLIO_CONTENT.links.email,
         address: {
           "@type": "PostalAddress",
           addressLocality: "Lagos",
@@ -128,8 +128,8 @@ export default function RootLayout({
           "Yjs",
         ],
         sameAs: [
-          "https://github.com/Musty325199",
-          "https://www.linkedin.com/in/mustapha-lawal-74b62523b",
+          PORTFOLIO_CONTENT.links.github,
+          PORTFOLIO_CONTENT.links.linkedin,
         ],
       },
       {

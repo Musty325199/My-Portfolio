@@ -173,7 +173,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
         {/* Primary Showcase Media Frame */}
         <section className="space-y-4">
-          <BrowserFrame url={project.liveUrl ? project.liveUrl.replace("https://", "") : `${project.id}.app`}>
+          <BrowserFrame url={project.liveUrl ? project.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "") : ""}>
             <div className="relative w-full aspect-[16/10] overflow-hidden">
               <Image
                 src={project.previewImage}
