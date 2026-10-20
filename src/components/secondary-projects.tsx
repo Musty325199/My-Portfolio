@@ -1,10 +1,46 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { motion } from "motion/react";
 import { PORTFOLIO_CONTENT, Project } from "@/data/content";
 import { BrowserFrame } from "./device-frames";
 import { ArrowUpRight, Check, AlertCircle, ShieldCheck, Database, Zap } from "lucide-react";
+import { isReducedMotion } from "@/lib/motion";
+
+function ImageReveal({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    setReduced(isReducedMotion());
+  }, []);
+
+  return (
+    <motion.div
+      initial={
+        reduced
+          ? { opacity: 0 }
+          : { opacity: 0, clipPath: "inset(0 0 100% 0)" }
+      }
+      whileInView={
+        reduced
+          ? { opacity: 1 }
+          : { opacity: 1, clipPath: "inset(0 0 0% 0)" }
+      }
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export function SecondaryProjects() {
   const stockflow = PORTFOLIO_CONTENT.projects.find((p) => p.id === "stockflow")!;
@@ -106,36 +142,36 @@ export function SecondaryProjects() {
 
             {/* Screenshots slot */}
             <div className="lg:col-span-7 space-y-4">
-              <BrowserFrame url="stockflowhq.com/dashboard">
-                <div className="relative w-full aspect-[16/10] overflow-hidden">
+              <BrowserFrame url="stockflowhq.com">
+                <ImageReveal className="relative w-full aspect-[16/10] overflow-hidden">
                   <Image
                     src="/assets/stockflow/screen-1.jpg"
-                    alt="StockFlow product and inventory dashboard"
+                    alt="StockFlow landing page and small business inventory management overview"
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 650px"
                   />
-                </div>
+                </ImageReveal>
               </BrowserFrame>
               <div className="grid grid-cols-2 gap-4">
-                <div className="relative aspect-[16/10] rounded-sm overflow-hidden border border-white/[0.08]">
+                <ImageReveal className="relative aspect-[16/10] rounded-sm overflow-hidden border border-white/[0.08]">
                   <Image
                     src="/assets/stockflow/screen-2.jpg"
-                    alt="StockFlow pay later ledger"
+                    alt="StockFlow features: real-time stock levels, sales tracking, and customer insights"
                     fill
                     className="object-cover"
                     sizes="350px"
                   />
-                </div>
-                <div className="relative aspect-[16/10] rounded-sm overflow-hidden border border-white/[0.08]">
+                </ImageReveal>
+                <ImageReveal className="relative aspect-[16/10] rounded-sm overflow-hidden border border-white/[0.08]">
                   <Image
                     src="/assets/stockflow/screen-3.jpg"
-                    alt="StockFlow POS flow"
+                    alt="StockFlow pricing tiers with 14-day free trial and Pro plan"
                     fill
                     className="object-cover"
                     sizes="350px"
                   />
-                </div>
+                </ImageReveal>
               </div>
             </div>
           </div>
@@ -224,25 +260,25 @@ export function SecondaryProjects() {
             {/* Screenshots slot */}
             <div className="lg:col-span-7 space-y-4">
               <BrowserFrame url="nook-lagos.vercel.app">
-                <div className="relative w-full aspect-[16/10] overflow-hidden">
+                <ImageReveal className="relative w-full aspect-[16/10] overflow-hidden">
                   <Image
                     src="/assets/nook/screen-1.jpg"
-                    alt="NOOK Lagos curated stays and experiences directory"
+                    alt="NOOK Lagos home page: curated directory of luxury stays and experiences"
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 650px"
                   />
-                </div>
+                </ImageReveal>
               </BrowserFrame>
-              <div className="relative aspect-[16/10] rounded-sm overflow-hidden border border-white/[0.08]">
+              <ImageReveal className="relative aspect-[16/10] rounded-sm overflow-hidden border border-white/[0.08]">
                 <Image
                   src="/assets/nook/screen-2.jpg"
-                  alt="NOOK admin dashboard and booking manager"
+                  alt="NOOK stay detail page: architectural photo gallery and reservation enquiry"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 650px"
                 />
-              </div>
+              </ImageReveal>
             </div>
           </div>
         </div>
@@ -320,8 +356,8 @@ export function SecondaryProjects() {
 
             {/* Screenshots slot */}
             <div className="lg:col-span-7 space-y-4">
-              <BrowserFrame url="hostvale.app/ops">
-                <div className="relative w-full aspect-[16/10] overflow-hidden">
+              <BrowserFrame url="hostvale.app">
+                <ImageReveal className="relative w-full aspect-[16/10] overflow-hidden">
                   <Image
                     src="/assets/hostvale/screen-1.jpg"
                     alt="Hostvale operations and caution fee tracking overview"
@@ -329,9 +365,9 @@ export function SecondaryProjects() {
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 650px"
                   />
-                </div>
+                </ImageReveal>
               </BrowserFrame>
-              <div className="relative aspect-[16/10] rounded-sm overflow-hidden border border-white/[0.08]">
+              <ImageReveal className="relative aspect-[16/10] rounded-sm overflow-hidden border border-white/[0.08]">
                 <Image
                   src="/assets/hostvale/screen-2.jpg"
                   alt="Hostvale host mini website preview"
@@ -339,7 +375,7 @@ export function SecondaryProjects() {
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 650px"
                 />
-              </div>
+              </ImageReveal>
             </div>
           </div>
         </div>

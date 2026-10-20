@@ -15,7 +15,7 @@ if (!fs.existsSync(OUT_DIR)) {
 
 async function runTests() {
   console.log("Starting Viewport & Hamburger Verification...\n");
-  const browser = await chromium.launch({ headless: true, channel: "msedge" });
+  const browser = await chromium.launch({ headless: true, channel: "chrome" });
 
   let allPassed = true;
 
@@ -66,6 +66,26 @@ async function runTests() {
         allPassed = false;
       } else {
         console.log(`  ✅ Zero horizontal overflow (scrollWidth: ${overflow.scrollWidth}px == innerWidth: ${overflow.innerWidth}px)`);
+      }
+
+      // Check all rendered images for loading success
+      const imageStatus = await page.evaluate(() => {
+        const imgs = Array.from(document.querySelectorAll("img"));
+        return imgs.map((img) => ({
+          src: img.src,
+          alt: img.alt,
+          loaded: img.complete && img.naturalWidth > 0,
+          naturalWidth: img.naturalWidth,
+          naturalHeight: img.naturalHeight,
+        }));
+      });
+
+      const brokenImages = imageStatus.filter((i) => !i.loaded);
+      if (brokenImages.length > 0) {
+        console.error(`  ❌ Found ${brokenImages.length} broken images:`, brokenImages);
+        allPassed = false;
+      } else {
+        console.log(`  ✅ All ${imageStatus.length} rendered images loaded cleanly with natural dimensions.`);
       }
 
       // 2. Check for console errors

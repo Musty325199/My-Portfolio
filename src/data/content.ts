@@ -267,17 +267,17 @@ export const PORTFOLIO_CONTENT = {
       screenshots: [
         {
           src: "/assets/stockflow/screen-1.jpg",
-          caption: "StockFlow overview: product catalogue, stock levels, and POS quick-action panel",
+          caption: "StockFlow overview: small business inventory management and sales dashboard",
           aspectRatio: "16/10",
         },
         {
           src: "/assets/stockflow/screen-2.jpg",
-          caption: "Pay-later credit sales ledger: customer debt tracking, payment installments, and balances",
+          caption: "Feature breakdown: real-time stock levels, daily sales tracking, and customer insights",
           aspectRatio: "16/10",
         },
         {
           src: "/assets/stockflow/screen-3.jpg",
-          caption: "POS checkout flow: fast item barcode/name search and instant receipt creation",
+          caption: "Pricing tiers: transparent structure with 14-day free trial and Pro plan",
           aspectRatio: "16/10",
         },
       ],
@@ -307,12 +307,12 @@ export const PORTFOLIO_CONTENT = {
       screenshots: [
         {
           src: "/assets/nook/screen-1.jpg",
-          caption: "NOOK visitor discovery: curated stays, neighborhood filter, and experience booking",
+          caption: "NOOK visitor discovery: curated collection of design-forward Lagos stays",
           aspectRatio: "16/10",
         },
         {
           src: "/assets/nook/screen-2.jpg",
-          caption: "Admin operating dashboard: reservation workflow, availability dates, and automated alerts",
+          caption: "Stay detail showcase: immersive architectural photo gallery and reservation enquiry flow",
           aspectRatio: "16/10",
         },
       ],
