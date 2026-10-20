@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Newsreader, Inter, JetBrains_Mono } from "next/font/google";
+import { getSiteUrl } from "@/lib/site";
 import "./globals.css";
 import { PORTFOLIO_CONTENT } from "@/data/content";
 
@@ -29,7 +30,7 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://musty-portfolio.vercel.app";
+const siteUrl = getSiteUrl();
 const metaTitle = "Mustapha Lawal | Full-Stack Developer (MERN) in Lagos, Nigeria";
 const metaDescription =
   "Mustapha Lawal is a full-stack developer (MERN & Next.js) in Lagos building real-time apps. Creator of Tessel whiteboard, StockFlow, NOOK, and Hostvale.";

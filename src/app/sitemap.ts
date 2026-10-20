@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 import { PORTFOLIO_CONTENT } from "@/data/content";
+import { getSiteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://musty-portfolio.vercel.app";
+  const siteUrl = getSiteUrl();
   const now = new Date();
 
   const projectUrls: MetadataRoute.Sitemap = PORTFOLIO_CONTENT.projects.map((project) => ({

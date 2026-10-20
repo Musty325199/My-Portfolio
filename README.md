@@ -64,7 +64,7 @@ cp .env.example .env.local
 ```
 Configure your environment keys:
 ```env
-NEXT_PUBLIC_SITE_URL=https://musty-portfolio.vercel.app
+NEXT_PUBLIC_SITE_URL=https://musty-dev.vercel.app
 GEMINI_API_KEY=your_gemini_api_key_here
 RESEND_API_KEY=your_resend_api_key_here
 ```
@@ -105,7 +105,7 @@ This portfolio is tailored specifically for Vercel's free tier with zero recurri
 2. Go to [vercel.com](https://vercel.com) and log in with GitHub.
 3. Click **Add New...** > **Project** and select your repository.
 4. In the **Environment Variables** section, add:
-   - `NEXT_PUBLIC_SITE_URL`: `https://musty-portfolio.vercel.app` (or your custom domain)
+   - `NEXT_PUBLIC_SITE_URL`: `https://musty-dev.vercel.app` (or your custom domain)
    - `GEMINI_API_KEY`: *(Free)* Get one from [aistudio.google.com](https://aistudio.google.com/app/apikey)
    - `RESEND_API_KEY`: *(Optional)* From [resend.com](https://resend.com)
 5. Click **Deploy**. Vercel will build the static pages and deploy edge route handlers in under 60 seconds.
@@ -120,7 +120,7 @@ Follow these exact steps immediately after deploying your site to Vercel:
 1. Navigate to [Google Search Console](https://search.google.com/search-console).
 2. Choose **URL prefix** and enter your live URL:
    ```
-   https://musty-portfolio.vercel.app
+   https://musty-dev.vercel.app
    ```
 3. Choose the **HTML tag** verification method. Copy the verification meta tag value.
 4. Add the verification code to `src/app/layout.tsx` under `metadata.verification.google` or deploy via DNS if using a custom domain.
@@ -131,27 +131,27 @@ Follow these exact steps immediately after deploying your site to Vercel:
    ```
    sitemap.xml
    ```
-   Full URL: `https://musty-portfolio.vercel.app/sitemap.xml`
+   Full URL: `https://musty-dev.vercel.app/sitemap.xml`
 3. Click **Submit**. Google will read the home page and all project URLs:
-   - `https://musty-portfolio.vercel.app/`
-   - `https://musty-portfolio.vercel.app/work/tessel`
-   - `https://musty-portfolio.vercel.app/work/stockflow`
-   - `https://musty-portfolio.vercel.app/work/nook`
-   - `https://musty-portfolio.vercel.app/work/hostvale`
+   - `https://musty-dev.vercel.app/`
+   - `https://musty-dev.vercel.app/work/tessel`
+   - `https://musty-dev.vercel.app/work/stockflow`
+   - `https://musty-dev.vercel.app/work/nook`
+   - `https://musty-dev.vercel.app/work/hostvale`
 
 ### 3. Verify Robots.txt
-Open `https://musty-portfolio.vercel.app/robots.txt` in your browser. Verify it displays:
+Open `https://musty-dev.vercel.app/robots.txt` in your browser. Verify it displays:
 ```txt
 User-Agent: *
 Allow: /
 Disallow: /api/*
 
-Sitemap: https://musty-portfolio.vercel.app/sitemap.xml
+Sitemap: https://musty-dev.vercel.app/sitemap.xml
 ```
 
 ### 4. Test Rich Results (Structured Data Validation)
 1. Open the [Google Rich Results Test](https://search.google.com/test/rich-results).
-2. Enter `https://musty-portfolio.vercel.app`.
+2. Enter `https://musty-dev.vercel.app`.
 3. Confirm that the following schemas are recognized without errors:
    - **Person** (`Mustapha Lawal`)
    - **ProfilePage**
@@ -161,12 +161,12 @@ Sitemap: https://musty-portfolio.vercel.app/sitemap.xml
 ### 5. Request Immediate Indexing
 1. In the top URL Inspection bar in Search Console, paste:
    ```
-   https://musty-portfolio.vercel.app
+   https://musty-dev.vercel.app
    ```
 2. Click **Test Live URL**, then click **Request Indexing**.
 3. Repeat for your flagship case study:
    ```
-   https://musty-portfolio.vercel.app/work/tessel
+   https://musty-dev.vercel.app/work/tessel
    ```
 
 ---

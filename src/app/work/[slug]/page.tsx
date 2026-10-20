@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { PORTFOLIO_CONTENT, Project } from "@/data/content";
+import { getSiteUrl } from "@/lib/site";
 import { BrowserFrame, PhoneFrame } from "@/components/device-frames";
 import { ArrowLeft, ArrowUpRight, ExternalLink } from "lucide-react";
 
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     return { title: "Project Not Found" };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://musty-portfolio.vercel.app";
+  const siteUrl = getSiteUrl();
   const url = `${siteUrl}/work/${slug}`;
   const title = `${project.title} — ${project.tagline} | Mustapha Lawal`;
   const description = `${project.oneLiner} Engineered by Mustapha Lawal using ${project.stack.slice(0, 5).join(", ")}.`;
@@ -69,7 +70,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     notFound();
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://musty-portfolio.vercel.app";
+  const siteUrl = getSiteUrl();
 
   // Project-specific JSON-LD structured data
   const projectJsonLd = {
