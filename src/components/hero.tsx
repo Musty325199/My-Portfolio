@@ -1,11 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion } from "motion/react";
 import { PORTFOLIO_CONTENT } from "@/data/content";
 import { getLagosTime } from "@/lib/utils";
 import { ArrowDown, Mail, ArrowUpRight } from "lucide-react";
-import { MOTION } from "@/lib/motion";
 
 export function Hero() {
   const [time, setTime] = useState("");
@@ -21,12 +19,7 @@ export function Hero() {
   return (
     <section className="relative min-h-[100svh] flex flex-col justify-between pt-28 pb-12 px-6 sm:px-8 md:px-12 max-w-7xl mx-auto">
       {/* Top Status Bar */}
-      <motion.div
-        initial={{ opacity: 0, y: -8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: MOTION.durations.med, ease: MOTION.easings.entranceBezier }}
-        className="flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-[#A39E92] uppercase tracking-widest border-b border-white/[0.08] pb-4"
-      >
+      <div className="flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-[#A39E92] uppercase tracking-widest border-b border-white/[0.08] pb-4">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-[#FF6A2B] pulse-dot" />
           <span className="text-[#F2EEE6] font-medium">Open to work</span>
@@ -38,19 +31,14 @@ export function Hero() {
           <span className="text-[#6B665C]">·</span>
           <span>MERN + Next.js + Postgres</span>
         </div>
-      </motion.div>
+      </div>
 
       {/* Main Hero Identity Display */}
       <div className="my-auto py-10 md:py-16">
-        <div className="overflow-hidden mb-3">
-          <motion.span
-            initial={{ y: "100%", opacity: 0 }}
-            animate={{ y: "0%", opacity: 1 }}
-            transition={{ duration: MOTION.durations.med, ease: MOTION.easings.entranceBezier }}
-            className="block font-mono text-xs sm:text-sm text-[#FF6A2B] uppercase tracking-widest"
-          >
+        <div className="mb-3">
+          <span className="block font-mono text-xs sm:text-sm text-[#FF6A2B] uppercase tracking-widest">
             01 / Identity & Direction
-          </motion.span>
+          </span>
         </div>
 
         {/* Display Name & Role */}
@@ -98,12 +86,7 @@ export function Hero() {
       </div>
 
       {/* Action Buttons & Bottom Anchor */}
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: MOTION.durations.med, delay: 0.5, ease: MOTION.easings.entranceBezier }}
-        className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-6 border-t border-white/[0.08]"
-      >
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-6 border-t border-white/[0.08]">
         <div className="flex flex-wrap items-center gap-4">
           <a
             href="#work"
@@ -141,7 +124,7 @@ export function Hero() {
             <ArrowUpRight className="w-3 h-3 text-[#FF6A2B]" />
           </a>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

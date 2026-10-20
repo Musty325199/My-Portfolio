@@ -127,7 +127,6 @@ export function TesselCaseStudy() {
               fill
               className="object-cover"
               sizes="(max-width: 1200px) 100vw, 1200px"
-              priority
             />
           </div>
         </BrowserFrame>

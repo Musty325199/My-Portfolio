@@ -73,7 +73,6 @@ export function ProjectIndex() {
                   fill
                   className="object-cover"
                   sizes="320px"
-                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2.5">
                   <span className="font-mono text-[10px] text-[#F2EEE6] uppercase tracking-wider bg-black/60 px-1.5 py-0.5 rounded-xs">
