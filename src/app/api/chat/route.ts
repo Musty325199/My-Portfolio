@@ -168,7 +168,12 @@ export async function POST(req: NextRequest) {
 
     // Call Google Gemini REST API free tier with fast models and fallback
     const systemPrompt = buildSystemPrompt();
-    const candidateModels = ["gemini-2.0-flash-lite", "gemini-2.0-flash", "gemini-1.5-flash"];
+    const candidateModels = [
+      "gemini-flash-lite-latest",
+      "gemini-2.5-flash-lite",
+      "gemini-2.5-flash",
+      "gemini-flash-latest",
+    ];
 
     let lastError: Error | null = null;
     let answerText = "";
