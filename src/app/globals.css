@@ -46,6 +46,15 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Prevent iOS Safari auto-zoom on input focus */
+@media screen and (max-width: 768px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
 /* Subtle editorial film grain overlay (4% opacity, non-blocking) */
 .grain-overlay {
   position: fixed;

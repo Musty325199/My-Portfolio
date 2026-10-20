@@ -370,7 +370,7 @@ export function SecondaryProjects() {
               <ImageReveal className="relative aspect-[16/10] rounded-sm overflow-hidden border border-white/[0.08]">
                 <Image
                   src="/assets/hostvale/screen-2.jpg"
-                  alt="Hostvale host mini website preview"
+                  alt="Hostvale bookings management and reservation roster portal"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 650px"

@@ -340,12 +340,12 @@ export const PORTFOLIO_CONTENT = {
       screenshots: [
         {
           src: "/assets/hostvale/screen-1.jpg",
-          caption: "Host operations portal: caution fee logs, guest identity validation, and check-in rosters",
+          caption: "Hostvale operations dashboard: occupancy metrics, active reservations, and guest balances",
           aspectRatio: "16/10",
         },
         {
           src: "/assets/hostvale/screen-2.jpg",
-          caption: "Dynamic host mini-website: direct booking portal, property photo gallery, and house rules",
+          caption: "Bookings management portal: multi-property schedules, payment status, and guest check-in tracking",
           aspectRatio: "16/10",
         },
       ],

@@ -43,7 +43,16 @@ export function AskMustyChat() {
   useEffect(() => {
     if (isOpen) {
       scrollToBottom();
+      // Lock body scroll on mobile to avoid background scrolling
+      if (typeof window !== "undefined" && window.innerWidth < 640) {
+        document.body.style.overflow = "hidden";
+      }
+    } else {
+      document.body.style.overflow = "";
     }
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [messages, isOpen]);
 
   const handleSend = async (messageText?: string) => {
@@ -99,7 +108,11 @@ export function AskMustyChat() {
   return (
     <>
       {/* Floating Trigger Button */}
-      <div className="fixed bottom-6 right-6 z-40">
+      <div
+        className={`fixed bottom-6 right-6 z-40 transition-all duration-200 ${
+          isOpen ? "opacity-0 pointer-events-none scale-90" : "opacity-100 scale-100"
+        }`}
+      >
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Open AI portfolio assistant"
@@ -120,14 +133,14 @@ export function AskMustyChat() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 30, scale: 0.95 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-x-4 bottom-20 sm:bottom-24 sm:right-6 sm:left-auto sm:w-[420px] max-h-[80vh] sm:max-h-[620px] bg-[#141311] border border-white/[0.16] rounded-xl shadow-[0_25px_60px_rgba(0,0,0,0.85)] z-50 flex flex-col overflow-hidden"
+            initial={{ opacity: 0, y: "100%" }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: "100%" }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 sm:inset-auto sm:right-6 sm:bottom-24 sm:w-[420px] sm:h-[620px] sm:max-h-[85vh] bg-[#0E0D0B] sm:bg-[#141311] sm:border sm:border-white/[0.16] sm:rounded-xl sm:shadow-[0_25px_60px_rgba(0,0,0,0.85)] z-50 flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 bg-[#1B1A16] border-b border-white/[0.08]">
+            <div className="flex items-center justify-between px-4 sm:px-5 py-3.5 sm:py-4 bg-[#181714] border-b border-white/[0.08] pt-[max(0.875rem,env(safe-area-inset-top))]">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-[#FF6A2B]/10 border border-[#FF6A2B]/30 flex items-center justify-center">
                   <Bot className="w-4 h-4 text-[#FF6A2B]" />
@@ -144,9 +157,9 @@ export function AskMustyChat() {
               <button
                 onClick={() => setIsOpen(false)}
                 aria-label="Close assistant"
-                className="text-[#A39E92] hover:text-[#F2EEE6] p-1.5 rounded-full hover:bg-white/[0.06] transition-colors"
+                className="text-[#A39E92] hover:text-[#F2EEE6] p-2 rounded-full hover:bg-white/[0.06] transition-colors cursor-pointer"
               >
-                <X className="w-4 h-4" />
+                <X className="w-5 h-5 sm:w-4 sm:h-4" />
               </button>
             </div>
 
@@ -222,7 +235,7 @@ export function AskMustyChat() {
             </div>
 
             {/* Suggested Question Chips (Offline Fallback Chips) */}
-            <div className="p-3 bg-[#100F0D] border-t border-white/[0.06] overflow-x-auto">
+            <div className="p-3 bg-[#100F0D] border-t border-white/[0.06] overflow-x-auto touch-pan-x scrollbar-none">
               <span className="font-mono text-[10px] text-[#6B665C] uppercase tracking-wider block mb-1.5">
                 Suggested Questions (Works Offline)
               </span>
@@ -230,9 +243,10 @@ export function AskMustyChat() {
                 {PORTFOLIO_CONTENT.aiAssistant.suggestedQuestions.map((q, idx) => (
                   <button
                     key={idx}
+                    type="button"
                     onClick={() => handleChipClick(q.chip)}
                     disabled={loading}
-                    className="font-mono text-[11px] text-[#A39E92] hover:text-[#FF6A2B] bg-[#161512] hover:bg-[#1E1C18] border border-white/[0.08] px-2.5 py-1 rounded-sm transition-colors cursor-pointer shrink-0 disabled:opacity-40"
+                    className="font-mono text-[11px] text-[#A39E92] hover:text-[#FF6A2B] bg-[#161512] hover:bg-[#1E1C18] border border-white/[0.08] px-3 py-1.5 rounded-sm transition-colors cursor-pointer shrink-0 disabled:opacity-40"
                   >
                     {q.chip}
                   </button>
@@ -241,7 +255,7 @@ export function AskMustyChat() {
             </div>
 
             {/* Input Form */}
-            <div className="p-3 bg-[#1B1A16] border-t border-white/[0.08]">
+            <div className="p-3 sm:p-3 bg-[#181714] border-t border-white/[0.08] pb-[max(0.875rem,env(safe-area-inset-bottom))]">
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -256,18 +270,18 @@ export function AskMustyChat() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   disabled={loading}
-                  className="flex-1 bg-[#0E0D0B] border border-white/[0.12] rounded-md px-3 py-2 text-xs text-[#F2EEE6] placeholder:text-[#6B665C] focus:border-[#FF6A2B] focus:outline-none transition-colors"
+                  className="flex-1 bg-[#0E0D0B] border border-white/[0.12] rounded-md px-3.5 py-2.5 sm:py-2 text-base sm:text-xs text-[#F2EEE6] placeholder:text-[#6B665C] focus:border-[#FF6A2B] focus:outline-none transition-colors"
                 />
                 <button
                   type="submit"
                   disabled={!input.trim() || loading}
                   aria-label="Send question"
-                  className="p-2 bg-[#FF6A2B] hover:bg-[#FF854A] text-[#0E0D0B] rounded-md transition-colors disabled:opacity-30 cursor-pointer"
+                  className="p-2.5 sm:p-2 bg-[#FF6A2B] hover:bg-[#FF854A] text-[#0E0D0B] rounded-md transition-colors disabled:opacity-30 cursor-pointer shrink-0"
                 >
                   <Send className="w-4 h-4" />
                 </button>
               </form>
-              <div className="flex justify-between items-center mt-1 px-1 font-mono text-[9px] text-[#6B665C]">
+              <div className="flex justify-between items-center mt-1.5 px-1 font-mono text-[9px] text-[#6B665C]">
                 <span>Grounding: content.ts only</span>
                 <span>{input.length}/300</span>
               </div>
