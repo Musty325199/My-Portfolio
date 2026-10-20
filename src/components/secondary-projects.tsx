@@ -293,8 +293,8 @@ export function SecondaryProjects() {
                 <span className="font-mono text-xs text-[#FF6A2B] border border-[#FF6A2B]/40 px-2 py-0.5 rounded-xs">
                   04 / PROPERTY TECH
                 </span>
-                <span className="font-mono text-xs text-[#A39E92] bg-white/[0.04] px-2 py-0.5 rounded-xs">
-                  Status: In Development
+                <span className="font-mono text-xs text-[#A39E92]">
+                  Live in Production
                 </span>
               </div>
               <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#F2EEE6] tracking-tight mt-2">
@@ -305,9 +305,15 @@ export function SecondaryProjects() {
               </p>
             </div>
 
-            <div className="font-mono text-xs text-[#6B665C] border border-white/10 px-3 py-1.5 rounded-xs">
-              Live link pending deployment
-            </div>
+            <a
+              href="https://hostvale.app/ops"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-mono text-xs text-[#FF6A2B] hover:text-[#FF854A] border border-[#FF6A2B]/30 hover:border-[#FF6A2B] px-3.5 py-1.5 rounded-xs transition-colors"
+            >
+              <span>hostvale.app/ops</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-8">
@@ -356,7 +362,7 @@ export function SecondaryProjects() {
 
             {/* Screenshots slot */}
             <div className="lg:col-span-7 space-y-4">
-              <BrowserFrame url="hostvale.app">
+              <BrowserFrame url="hostvale.app/ops">
                 <ImageReveal className="relative w-full aspect-[16/10] overflow-hidden">
                   <Image
                     src="/assets/hostvale/screen-1.jpg"

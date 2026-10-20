@@ -144,11 +144,21 @@ export function ContactSection() {
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Honeypot anti-spam field (hidden from users) */}
-            <div className="hidden" aria-hidden="true">
+            {/* Honeypot anti-spam field (hidden off-screen) */}
+            <div
+              style={{
+                position: "absolute",
+                left: "-9999px",
+                width: "1px",
+                height: "1px",
+                overflow: "hidden",
+              }}
+              aria-hidden="true"
+            >
               <label htmlFor="company_honeypot">Leave blank</label>
               <input
                 id="company_honeypot"
+                name="company_honeypot"
                 type="text"
                 tabIndex={-1}
                 value={formState.honeypot}

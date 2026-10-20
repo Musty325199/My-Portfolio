@@ -220,6 +220,59 @@ export function TesselCaseStudy() {
 
       {/* Architecture SVG Diagram */}
       <TesselArchitecture />
+
+      {/* Tessel Closing Section */}
+      <div className="mt-16 pt-12 border-t border-white/[0.08]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-8">
+          <div className="lg:col-span-5 space-y-4">
+            <span className="font-mono text-xs text-[#FF6A2B] uppercase tracking-wider block">
+              Outcome & Live Environment
+            </span>
+            <h3 className="font-serif text-3xl sm:text-4xl text-[#F2EEE6] tracking-tight">
+              Production Canvas in Real Time
+            </h3>
+            <p className="font-sans text-sm sm:text-base text-[#A39E92] leading-relaxed">
+              Tessel is live on GitHub Pages with automated CI deployments. Open multiple browser tabs or load it on an iPhone to test conflict-free CRDT synchronization, offline persistence, and live multiplayer awareness.
+            </p>
+            <div className="flex flex-wrap items-center gap-3 pt-2 font-mono text-xs">
+              <a
+                href={tesselProject.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-3 bg-[#F2EEE6] hover:bg-[#FF6A2B] text-[#0E0D0B] font-semibold uppercase tracking-wider rounded-sm transition-colors flex items-center gap-2"
+              >
+                <span>Launch Live Board</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+              <a
+                href={tesselProject.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-3 border border-white/20 hover:border-[#FF6A2B] text-[#F2EEE6] hover:text-[#FF6A2B] uppercase tracking-wider rounded-sm transition-colors flex items-center gap-2"
+              >
+                <span>Inspect Monorepo</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+          <div className="lg:col-span-7">
+            <BrowserFrame url="musty325199.github.io/tessel/live">
+              <div className="relative w-full aspect-[16/10] overflow-hidden">
+                <Image
+                  src="/assets/tessel/board.jpg"
+                  alt="Tessel live multiplayer canvas session showing real-time concurrent drawing"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 650px"
+                />
+              </div>
+            </BrowserFrame>
+            <p className="mt-2 font-mono text-xs text-[#6B665C] text-right">
+              Live multi-user board session with concurrent peers
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

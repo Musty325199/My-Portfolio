@@ -43,7 +43,8 @@ export function ProjectIndex() {
           </h2>
         </div>
         <p className="font-mono text-xs text-[#A39E92] max-w-xs">
-          Hover rows for live preview. Click to inspect architecture and case studies.
+          <span className="hidden sm:inline">Hover rows for live preview. Click to inspect architecture and case studies.</span>
+          <span className="sm:hidden">Tap a project to preview.</span>
         </p>
       </div>
 

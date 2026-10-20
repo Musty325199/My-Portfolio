@@ -70,7 +70,7 @@ function buildSystemPrompt(): string {
   const projects = PORTFOLIO_CONTENT.projects
     .map(
       (p) =>
-        `- ${p.title} (${p.category}): ${p.oneLiner} Stack: ${p.stack.join(", ")}. Hardest challenge: ${p.hardestPart}. Built: ${p.whatIBuilt}. Live URL: ${p.liveUrl || "In development"}.`
+        `- ${p.title} (${p.category}): ${p.oneLiner} Stack: ${p.stack.join(", ")}. Hardest challenge: ${p.hardestPart}. Built: ${p.whatIBuilt}. Live URL: ${p.liveUrl || "Live"}.`
     )
     .join("\n");
 

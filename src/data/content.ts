@@ -5,8 +5,6 @@
 
 // CLEARLY MARKED TODOS AS REQUESTED BY THE SPEC
 export const TODO_LINKS = {
-  // TODO: Add Hostvale live URL here once public; currently in development
-  HOSTVALE_URL: "[TODO: Add Hostvale live URL once public]",
   // TODO: Confirm StockFlow exact production stack with owner
   STOCKFLOW_STACK_CONFIRMATION: "[TODO: Confirm full production stack with owner]",
 } as const;
@@ -99,9 +97,9 @@ export const PORTFOLIO_CONTENT = {
       title: "Tessel",
       tagline: "A live multiplayer whiteboard.",
       category: "Real-time Collaboration",
-      oneLiner: "Real-time collaborative canvas with zero-lag sync, offline persistence, and AI-driven board organization.",
+      oneLiner: "Real-time collaborative canvas with peer-to-peer sync, offline persistence, and AI-driven board organization.",
       whatIBuilt: "Engineered full stack: custom WebSocket sync server powered by Yjs CRDTs, React canvas engine, offline-first IndexedDB persistence, structured Gemini AI canvas organizer, and automated Playwright E2E suites.",
-      hardestPart: "Guaranteeing conflict-free distributed document convergence during sudden network drops while sustaining 60fps gesture rendering on mobile viewports.",
+      hardestPart: "Guaranteeing conflict-free distributed document convergence during sudden network drops while keeping gesture rendering smooth on mobile viewports.",
       stack: [
         "React 18",
         "TypeScript",
@@ -132,7 +130,7 @@ export const PORTFOLIO_CONTENT = {
           id: "problem",
           number: "01",
           title: "Problem",
-          headline: "Zero-latency collaboration without dropped state.",
+          headline: "Real-time collaboration without dropped state.",
           description: "Teams need to think together on one canvas without lag and without losing work when the connection drops. Distributed participants require immediate visual feedback while concurrent operations reconcile seamlessly in the background.",
           technicalDetails: [
             "Network drops in high-latency geographies discard state on naive HTTP pipelines.",
@@ -151,7 +149,7 @@ export const PORTFOLIO_CONTENT = {
           number: "02",
           title: "Real-time sync",
           headline: "Conflict-free replication with Yjs CRDTs.",
-          description: "Yjs CRDTs run over a custom WebSocket sync server, ensuring edits from many people merge deterministically without central lock contention. Awareness states broadcast live cursors, selection bounding boxes, and peer presence at sub-50ms intervals.",
+          description: "Yjs CRDTs run over a custom WebSocket sync server, ensuring edits from many people merge deterministically without central lock contention. Awareness states broadcast live cursors, selection bounding boxes, and peer presence across active peers.",
           technicalDetails: [
             "WebSocket sync engine broadcasting delta updates via binary Yjs encoding.",
             "Awareness protocol for multi-user presence, remote cursor tracking, and collaborative selection.",
@@ -333,8 +331,8 @@ export const PORTFOLIO_CONTENT = {
         "PostgreSQL",
         "Tailwind CSS",
       ],
-      liveUrl: TODO_LINKS.HOSTVALE_URL,
-      status: "In development",
+      liveUrl: "https://hostvale.app/ops",
+      status: "Live",
       isFlagship: false,
       previewImage: "/assets/hostvale/screen-1.jpg",
       screenshots: [
@@ -437,7 +435,7 @@ export const PORTFOLIO_CONTENT = {
       {
         chip: "What is the hardest thing he built?",
         question: "What is the hardest thing Musty built?",
-        precomputedAnswer: "The hardest technical challenge was Tessel's real-time sync: guaranteeing conflict-free document convergence during network drops with Yjs CRDTs over WebSockets, while keeping gesture rendering at 60fps on mobile viewports. On NOOK, it was idempotent booking enquiries and HMAC-signed admin auth.",
+        precomputedAnswer: "The hardest technical challenge was Tessel's real-time sync: guaranteeing conflict-free document convergence during network drops with Yjs CRDTs over WebSockets, while keeping gesture rendering smooth on mobile viewports. On NOOK, it was idempotent booking enquiries and HMAC-signed admin auth.",
       },
       {
         chip: "Does he know Postgres & Supabase?",

@@ -41,7 +41,7 @@ A high-performance portfolio engineered for real-time systems, editorial typogra
 
 ## Featured Work
 
-1. **Tessel:** Real-time collaborative canvas with zero-lag WebSocket sync powered by Yjs CRDTs, offline-first IndexedDB persistence, and Gemini AI canvas organization.
+1. **Tessel:** Real-time collaborative canvas with WebSocket sync powered by Yjs CRDTs, offline-first IndexedDB persistence, and Gemini AI canvas organization.
 2. **StockFlow:** Retail operating system and POS engine with offline sales queuing, optimistic updates, and barcode scanning.
 3. **NOOK Lagos:** Hospitality booking engine and guide for short-term stays, featuring idempotent booking workflows and real-time host calendars.
 4. **Hostvale:** Multi-property hospitality operations platform handling caution fee workflows and unified calendar sync.
