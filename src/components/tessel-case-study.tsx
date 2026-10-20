@@ -302,12 +302,15 @@ function ChapterMediaRenderer({ chapter }: { chapter: CaseStudyChapter }) {
         >
           {media.webmSrc && <source src={media.webmSrc} type="video/webm" />}
           <source src={media.src} type="video/mp4" />
-          {/* Fallback to original GIF */}
-          <img
-            src="/assets/tessel/demo.gif"
-            alt={media.alt}
-            className="w-full h-full object-cover"
-          />
+          {/* Fallback poster image if video is unsupported */}
+          {media.poster && (
+            <img
+              src={media.poster}
+              alt={media.alt}
+              loading="lazy"
+              className="w-full h-full object-cover"
+            />
+          )}
         </video>
       </div>
     );
