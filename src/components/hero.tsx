@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { PORTFOLIO_CONTENT } from "@/data/content";
 import { getLagosTime } from "@/lib/utils";
-import { ArrowDown, Mail, ArrowUpRight } from "lucide-react";
+import { ArrowDown, Mail, ArrowUpRight, Download } from "lucide-react";
 
 export function Hero() {
   const [time, setTime] = useState("");
@@ -94,6 +94,16 @@ export function Hero() {
           >
             <span>See the work</span>
             <ArrowDown className="w-3.5 h-3.5 transition-transform group-hover:translate-y-0.5" />
+          </a>
+          <a
+            href={PORTFOLIO_CONTENT.links.cv}
+            download="Mustapha-Lawal-CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3.5 border border-white/[0.18] hover:border-[#FF6A2B] text-[#F2EEE6] hover:text-[#FF6A2B] font-mono text-xs uppercase tracking-wider rounded-sm transition-colors flex items-center justify-center gap-2"
+          >
+            <Download className="w-3.5 h-3.5 text-[#FF6A2B]" />
+            <span>Download CV</span>
           </a>
           <a
             href="#contact"

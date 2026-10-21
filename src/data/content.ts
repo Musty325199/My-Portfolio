@@ -15,6 +15,7 @@ export const SOURCE_OF_TRUTH_URLS = {
   linkedin: "https://www.linkedin.com/in/mustapha-lawal-74b62523b",
   email: "mustyflowcrm@gmail.com",
   whatsapp: "https://wa.me/2349065323916",
+  cv: "/Mustapha-Lawal-CV.pdf",
 } as const;
 
 // CLEARLY MARKED TODOS AS REQUESTED BY THE SPEC
@@ -94,6 +95,7 @@ export const PORTFOLIO_CONTENT = {
     email: SOURCE_OF_TRUTH_URLS.email,
     whatsapp: SOURCE_OF_TRUTH_URLS.whatsapp,
     linkedin: SOURCE_OF_TRUTH_URLS.linkedin,
+    cv: SOURCE_OF_TRUTH_URLS.cv,
   },
 
   navigation: [

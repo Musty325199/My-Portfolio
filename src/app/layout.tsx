@@ -131,6 +131,12 @@ export default function RootLayout({
           PORTFOLIO_CONTENT.links.github,
           PORTFOLIO_CONTENT.links.linkedin,
         ],
+        subjectOf: {
+          "@type": "DigitalDocument",
+          name: "Mustapha Lawal CV",
+          url: `${siteUrl}${PORTFOLIO_CONTENT.links.cv}`,
+          encodingFormat: "application/pdf",
+        },
       },
       {
         "@type": "WebSite",

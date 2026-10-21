@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { PORTFOLIO_CONTENT } from "@/data/content";
-import { Copy, Check, ArrowUpRight, Send, Mail, MessageSquare } from "lucide-react";
+import { Copy, Check, ArrowUpRight, Send, Mail, MessageSquare, Download } from "lucide-react";
 
 export function ContactSection() {
   const [copied, setCopied] = useState(false);
@@ -102,7 +102,7 @@ export function ContactSection() {
             </a>
           </div>
 
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
             <button
               onClick={handleCopyEmail}
               className="px-5 py-3 border border-white/20 hover:border-[#FF6A2B] text-[#F2EEE6] hover:text-[#FF6A2B] font-mono text-xs uppercase tracking-wider rounded-sm transition-colors flex items-center gap-2 cursor-pointer"
@@ -119,6 +119,16 @@ export function ContactSection() {
                 </>
               )}
             </button>
+            <a
+              href={PORTFOLIO_CONTENT.links.cv}
+              download="Mustapha-Lawal-CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-3 border border-white/20 hover:border-[#FF6A2B] text-[#F2EEE6] hover:text-[#FF6A2B] font-mono text-xs uppercase tracking-wider rounded-sm transition-colors flex items-center gap-2"
+            >
+              <Download className="w-3.5 h-3.5 text-[#FF6A2B]" />
+              <span>Download CV</span>
+            </a>
             <a
               href={PORTFOLIO_CONTENT.links.whatsapp}
               target="_blank"
@@ -321,7 +331,17 @@ export function ContactSection() {
         <div>
           <span>© {new Date().getFullYear()} Mustapha Lawal. Built with Next.js & Tailwind.</span>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
+          <a
+            href={PORTFOLIO_CONTENT.links.cv}
+            download="Mustapha-Lawal-CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#FF6A2B] transition-colors"
+          >
+            Download CV
+          </a>
+          <span>·</span>
           <a
             href={PORTFOLIO_CONTENT.links.linkedin}
             target="_blank"

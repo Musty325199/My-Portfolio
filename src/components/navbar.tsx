@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import { PORTFOLIO_CONTENT } from "@/data/content";
 import { getLagosTime } from "@/lib/utils";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Download } from "lucide-react";
 
 const MENU_ITEMS = [
   { label: "Selected Work", href: "#work", num: "01", tag: "Projects" },
@@ -117,10 +117,23 @@ export function Navbar() {
             </a>
           </nav>
 
-          {/* Desktop Right Indicator: Lagos WAT Time */}
-          <div className="hidden lg:flex items-center gap-2 font-mono text-xs text-[#A39E92] border-l border-white/10 pl-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FF6A2B] pulse-dot" />
-            <span>LAGOS {lagosTime || "WAT"}</span>
+          {/* Desktop Right CTA & Lagos WAT Time */}
+          <div className="hidden md:flex items-center gap-4">
+            <a
+              href={PORTFOLIO_CONTENT.links.cv}
+              download="Mustapha-Lawal-CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-white/20 hover:border-[#FF6A2B] text-[#F2EEE6] hover:text-[#FF6A2B] font-mono text-xs uppercase tracking-wider rounded-sm transition-colors"
+            >
+              <Download className="w-3.5 h-3.5 text-[#FF6A2B]" />
+              <span>Download CV</span>
+            </a>
+
+            <div className="hidden lg:flex items-center gap-2 font-mono text-xs text-[#A39E92] border-l border-white/10 pl-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF6A2B] pulse-dot" />
+              <span>LAGOS {lagosTime || "WAT"}</span>
+            </div>
           </div>
 
           {/* Modern Animated Hamburger Trigger (Strictly Hidden on Desktop: md:!hidden) */}
@@ -226,6 +239,26 @@ export function Navbar() {
                 </motion.div>
               ))}
             </nav>
+
+            {/* Mobile Menu Action: Download CV */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.32, duration: 0.3 }}
+              className="pb-6"
+            >
+              <a
+                href={PORTFOLIO_CONTENT.links.cv}
+                download="Mustapha-Lawal-CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeMobile}
+                className="w-full px-5 py-3.5 bg-[#F2EEE6] hover:bg-[#FF6A2B] text-[#0E0D0B] font-mono text-xs font-semibold uppercase tracking-wider rounded-sm transition-colors flex items-center justify-center gap-2"
+              >
+                <Download className="w-4 h-4" />
+                <span>Download CV</span>
+              </a>
+            </motion.div>
 
             {/* Sheet Footer */}
             <motion.div
