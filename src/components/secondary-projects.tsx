@@ -145,8 +145,8 @@ export function SecondaryProjects() {
               <BrowserFrame url={stockflow.liveUrl ? stockflow.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "") : ""}>
                 <ImageReveal className="relative w-full aspect-[16/10] overflow-hidden">
                   <Image
-                    src="/assets/stockflow/screen-1.jpg"
-                    alt="StockFlow landing page and small business inventory management overview"
+                    src="/assets/stockflow/stockflow-2026-10.jpg"
+                    alt="StockFlow landing page showcasing the inventory and sales management platform for African retailers"
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 650px"
@@ -156,8 +156,8 @@ export function SecondaryProjects() {
               <div className="grid grid-cols-2 gap-4">
                 <ImageReveal className="relative aspect-[16/10] rounded-sm overflow-hidden border border-white/[0.08]">
                   <Image
-                    src="/assets/stockflow/screen-2.jpg"
-                    alt="StockFlow features: real-time stock levels, sales tracking, and customer insights"
+                    src="/assets/stockflow/stockflow-features-2026-10.jpg"
+                    alt="StockFlow live operational dashboard showing daily sales, cash collected, and low-stock threshold alerts"
                     fill
                     className="object-cover"
                     sizes="350px"
@@ -165,8 +165,8 @@ export function SecondaryProjects() {
                 </ImageReveal>
                 <ImageReveal className="relative aspect-[16/10] rounded-sm overflow-hidden border border-white/[0.08]">
                   <Image
-                    src="/assets/stockflow/screen-3.jpg"
-                    alt="StockFlow pricing tiers with 14-day free trial and Pro plan"
+                    src="/assets/stockflow/stockflow-pricing-2026-10.jpg"
+                    alt="StockFlow transparent pricing plans: 14-day free trial and StockFlow Pro tier"
                     fill
                     className="object-cover"
                     sizes="350px"

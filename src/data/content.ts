@@ -278,21 +278,21 @@ export const PORTFOLIO_CONTENT = {
       liveUrl: SOURCE_OF_TRUTH_URLS.stockflow,
       status: "Live",
       isFlagship: false,
-      previewImage: "/assets/stockflow/screen-1.jpg",
+      previewImage: "/assets/stockflow/stockflow-2026-10.jpg",
       screenshots: [
         {
-          src: "/assets/stockflow/screen-1.jpg",
-          caption: "StockFlow overview: small business inventory management and sales dashboard",
+          src: "/assets/stockflow/stockflow-2026-10.jpg",
+          caption: "StockFlow overview: modern inventory and sales management system for African retailers",
           aspectRatio: "16/10",
         },
         {
-          src: "/assets/stockflow/screen-2.jpg",
-          caption: "Feature breakdown: real-time stock levels, daily sales tracking, and customer insights",
+          src: "/assets/stockflow/stockflow-features-2026-10.jpg",
+          caption: "Live operational metrics: daily sales, collected revenue, customer debt ledger, and low-stock alerts",
           aspectRatio: "16/10",
         },
         {
-          src: "/assets/stockflow/screen-3.jpg",
-          caption: "Pricing tiers: transparent structure with 14-day free trial and Pro plan",
+          src: "/assets/stockflow/stockflow-pricing-2026-10.jpg",
+          caption: "Pricing tiers: transparent structure with 14-day free trial and Pro plan with WhatsApp receipts",
           aspectRatio: "16/10",
         },
       ],
