@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import { PORTFOLIO_CONTENT, Project } from "@/data/content";
 import { getSiteUrl } from "@/lib/site";
 import { BrowserFrame, PhoneFrame } from "@/components/device-frames";
-import { ArrowLeft, ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, ExternalLink, Download } from "lucide-react";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
@@ -120,10 +120,15 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <main className="max-w-5xl mx-auto px-6 sm:px-8 md:px-12 py-16 md:py-24 space-y-16">
         {/* Project Title Block */}
         <section className="space-y-4 border-b border-white/[0.12] pb-10">
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <span className="font-mono text-xs text-[#FF6A2B] border border-[#FF6A2B]/40 px-2 py-0.5 rounded-xs">
               {project.category}
             </span>
+            {project.role && (
+              <span className="font-mono text-xs text-[#A39E92] border border-white/10 px-2 py-0.5 rounded-xs">
+                {project.role}
+              </span>
+            )}
             <span className="font-mono text-xs text-[#A39E92]">
               Status: {project.status || "Live in Production"}
             </span>
@@ -150,8 +155,17 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 rel="noopener noreferrer"
                 className="px-6 py-3.5 bg-[#F2EEE6] hover:bg-[#FF6A2B] text-[#0E0D0B] font-semibold uppercase tracking-wider rounded-sm transition-colors flex items-center gap-2"
               >
-                <span>Visit Live Application</span>
-                <ExternalLink className="w-4 h-4" />
+                {project.category.toLowerCase().includes("mobile") ? (
+                  <>
+                    <Download className="w-4 h-4" />
+                    <span>Download Live APK</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Visit Live Application</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </>
+                )}
               </a>
             )}
 
@@ -173,20 +187,36 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
         {/* Primary Showcase Media Frame */}
         <section className="space-y-4">
-          <BrowserFrame url={project.liveUrl ? project.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "") : ""}>
-            <div className="relative w-full aspect-[16/10] overflow-hidden">
-              <Image
-                src={project.previewImage}
-                alt={`${project.title} interface showcase`}
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 1000px"
+          {project.category.toLowerCase().includes("mobile") ? (
+            <div className="py-10 px-4 bg-[#141311] border border-white/[0.12] rounded-lg flex flex-col sm:flex-row items-center justify-center gap-8 shadow-[0_24px_60px_rgba(0,0,0,0.65)]">
+              <PhoneFrame
+                src={project.screenshots?.[0]?.src || project.previewImage}
+                alt={`${project.title} active screen`}
               />
+              {project.screenshots?.[1] && (
+                <PhoneFrame
+                  src={project.screenshots[1].src}
+                  alt={`${project.title} secondary screen`}
+                  className="hidden md:flex"
+                />
+              )}
             </div>
-          </BrowserFrame>
+          ) : (
+            <BrowserFrame url={project.liveUrl ? project.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "") : ""}>
+              <div className="relative w-full aspect-[16/10] overflow-hidden">
+                <Image
+                  src={project.previewImage}
+                  alt={`${project.title} interface showcase`}
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 1000px"
+                />
+              </div>
+            </BrowserFrame>
+          )}
           <p className="font-mono text-xs text-[#6B665C] text-right">
-            Production Interface & Real-time State
+            {project.category.toLowerCase().includes("mobile") ? "Android Native Interface & Offline State" : "Production Interface & Real-time State"}
           </p>
         </section>
 
@@ -236,19 +266,19 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             <h2 className="font-serif text-2xl sm:text-3xl text-[#F2EEE6]">
               Screen Gallery
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className={`grid gap-6 ${project.category.toLowerCase().includes("mobile") ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "grid-cols-1 sm:grid-cols-2"}`}>
               {project.screenshots.map((screen, idx) => (
                 <div key={idx} className="space-y-2">
-                  <div className="relative aspect-[16/10] rounded-sm overflow-hidden border border-white/[0.12] bg-[#141311]">
+                  <div className={`relative rounded-sm overflow-hidden border border-white/[0.12] bg-[#141311] ${screen.aspectRatio.startsWith("9/") ? "aspect-[9/19] max-w-[280px] mx-auto" : "aspect-[16/10]"}`}>
                     <Image
                       src={screen.src}
                       alt={screen.caption}
                       fill
                       className="object-cover"
-                      sizes="500px"
+                      sizes="(max-width: 768px) 100vw, 400px"
                     />
                   </div>
-                  <p className="font-mono text-[11px] text-[#6B665C]">
+                  <p className="font-mono text-[11px] text-[#A39E92] text-center">
                     {screen.caption}
                   </p>
                 </div>

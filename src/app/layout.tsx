@@ -33,7 +33,7 @@ export const viewport: Viewport = {
 const siteUrl = getSiteUrl();
 const metaTitle = "Mustapha Lawal | Full-Stack Developer (MERN) in Lagos, Nigeria";
 const metaDescription =
-  "Mustapha Lawal is a full-stack developer (MERN & Next.js) in Lagos building real-time apps. Creator of Tessel whiteboard, StockFlow, NOOK, and Hostvale.";
+  "Mustapha Lawal is a full-stack developer (MERN, Next.js & React Native) in Lagos building real-time and offline-first apps. Creator of Tessel whiteboard, Yípo, StockFlow, NOOK, and Hostvale.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -43,12 +43,17 @@ export const metadata: Metadata = {
     "Mustapha Lawal",
     "Musty",
     "Full-Stack Developer",
+    "Mobile App Developer",
+    "React Native",
+    "Expo",
     "MERN Stack",
     "Next.js",
     "Lagos Nigeria Developer",
     "Real-time apps",
+    "Offline-first apps",
     "Yjs CRDT",
     "Tessel",
+    "Yípo",
     "StockFlow",
     "NOOK",
     "Hostvale",

@@ -8,6 +8,8 @@ export const SOURCE_OF_TRUTH_URLS = {
   portfolio: "https://musty-dev.vercel.app",
   tesselDemo: "https://musty325199.github.io/tessel/",
   tesselCode: "https://github.com/Musty325199/tessel",
+  yipoGithub: "https://github.com/Musty325199/yipo-app",
+  yipoDownload: "https://github.com/Musty325199/yipo-app/releases/latest",
   stockflow: "https://stockflowhq.com",
   nook: "https://nook-lagos.vercel.app",
   hostvale: "https://hostvalehq.github.io/",
@@ -50,6 +52,7 @@ export interface Project {
   title: string;
   tagline: string;
   category: string;
+  role?: string;
   oneLiner: string;
   whatIBuilt: string;
   hardestPart: string;
@@ -365,6 +368,55 @@ export const PORTFOLIO_CONTENT = {
         },
       ],
     },
+    {
+      id: "yipo",
+      number: "05",
+      title: "Yípo",
+      tagline: "Offline Ajo & Esusu Mobile Record Keeper",
+      category: "Mobile App (Android) • Fintech",
+      role: "Sole Mobile Engineer & UI/UX Designer",
+      oneLiner: "A high-performance, offline-first Android application engineered for Nigerian Ajo, Esusu, and Adashe rotating savings organizers. Functions strictly as a secure digital ledger (never touches money) to automate contribution rounds, payout schedules, WhatsApp receipts, and member reliability scoring.",
+      whatIBuilt: "Sole Mobile Engineer & UI/UX Designer. Built 100% offline-first Android architecture on React Native and Expo (SDK 58): transactional SQLite ledger with ACID guarantees and migration schemas, custom Shopify Skia visual rotating turn ring, native Android biometric lock (Fingerprint/Face ID), Android Share Intent receiver for payment receipts, direct WhatsApp receipt deep-links, embedded-font A4 PDF export, and universal ARM32/ARM64 production compilation via EAS Build.",
+      hardestPart: "Designing the transactional multi-turn rotating savings ledger in local SQLite with instant optimistic updates, reversible 4-second undo states, and dynamic Skia canvas ring layout calculating polar coordinates across arbitrary group sizes at 60fps.",
+      stack: [
+        "React Native",
+        "Expo (SDK 58)",
+        "TypeScript",
+        "Expo SQLite",
+        "Shopify React Native Skia",
+        "Reanimated 4",
+        "EAS Build",
+        "Android NDK",
+      ],
+      liveUrl: SOURCE_OF_TRUTH_URLS.yipoDownload,
+      githubUrl: SOURCE_OF_TRUTH_URLS.yipoGithub,
+      status: "Live",
+      isFlagship: false,
+      previewImage: "/assets/yipo/yipo-preview-card.png",
+      keyFacts: [
+        "100% Offline-first",
+        "Shopify Skia 60fps",
+        "Biometric App Lock",
+        "Universal ARM APK",
+      ],
+      screenshots: [
+        {
+          src: "/assets/yipo/yipo-active-ring-screen.png",
+          caption: "Interactive Skia ring: active payout collector spotlight, pot progress, and member payment states",
+          aspectRatio: "9/19.5",
+        },
+        {
+          src: "/assets/yipo/yipo-payment-drawer-screen.png",
+          caption: "One-tap payment recording drawer: installment balances, instant undo toast, and payment note attachment",
+          aspectRatio: "9/19.5",
+        },
+        {
+          src: "/assets/yipo/yipo-whatsapp-reminder-screen.png",
+          caption: "Direct WhatsApp automation: deep-linked payment receipts and scheduled member reminders",
+          aspectRatio: "9/19.5",
+        },
+      ],
+    },
   ] as Project[],
 
   // Honest stack representation grouped by daily usage vs extensions
@@ -382,8 +434,11 @@ export const PORTFOLIO_CONTENT = {
     },
     {
       title: "Also ships with",
-      description: "Relational data modeling, modern SSR architectures, and rapid UI engineering.",
+      description: "Mobile app engineering, relational modeling, modern SSR architectures, and rapid UI.",
       items: [
+        { name: "React Native & Expo", usedIn: "Yípo", note: "Offline-first mobile engineering, native Android hardware integrations" },
+        { name: "Expo SQLite", usedIn: "Yípo", note: "Local transactional database with ACID writes and versioned migrations" },
+        { name: "Shopify Skia", usedIn: "Yípo", note: "Hardware-accelerated 2D canvas, custom rotational ring geometry at 60fps" },
         { name: "Next.js", usedIn: "NOOK, Hostvale, Portfolio", note: "App Router, Server Actions, per-page SEO, Route Handlers" },
         { name: "PostgreSQL / Supabase", usedIn: "NOOK, Hostvale", note: "Relational tables, Row-Level Security, database migrations" },
         { name: "Prisma", usedIn: "NOOK", note: "Type-safe database ORM and automated schema migrations" },
